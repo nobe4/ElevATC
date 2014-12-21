@@ -1,5 +1,4 @@
 $(function() {
-
 	$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=plane&tagmode=any&format=json&jsoncallback=?", handleImages);
 
 	function handleImages(data){
@@ -13,10 +12,15 @@ $(function() {
 	var atcAudio = 	$("#atc-audio")[0];
 	var musicAudio = $("#music-audio")[0];
 	var playPauseButton = $("#play-pause");
-
+	var atcVolume = $("#atc-volume");
+	var musicVolume = $("#music-volume");
+	var volumes = {
+		"atc" : 100,
+		"music" : 100
+	};
 	var playing = true;
 
-	console.log(playPauseButton);
+	// handle the click on the play/pause button
 	playPauseButton.click(function(){
 		if(playing){
 			atcAudio.pause();
@@ -26,7 +30,27 @@ $(function() {
 			musicAudio.play();
 		}
 		playing = !playing;
-		console.log(playing);
 		playPauseButton.text(playing?"PAUSE":"PLAY");
+	});
+
+	// update audio and displayed volumes
+	function updateVolumes(){
+		// update audio volume
+		atcAudio.volume = volumes.atc / 100.0;
+		musicAudio.volume = volumes.music / 100.0;
+		//update display
+		atcVolume.text(volumes.atc);
+		musicVolume.text(volumes.music);
+	}
+
+	// handle volume for atc
+	atcVolume.click(function(){
+		volumes.atc = (volumes.atc - 25 >= 0)?volumes.atc - 25:100;
+		updateVolumes();
+	});
+	// handle volume for music
+	musicVolume.click(function(){
+		volumes.music = (volumes.music - 25 >= 0)?volumes.music - 25:100;
+		updateVolumes();
 	});
 });
