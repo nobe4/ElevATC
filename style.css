@@ -5,3 +5,7 @@ div.backstretch:before{
 	background: url('pattern.png');
 	position: absolute;
 }
+
+audio{
+	visibility:hidden;
+}

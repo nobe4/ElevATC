@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>ElevATC</title>
-	<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>ElevATC</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<audio controls="" autoplay="" style="visibility:hidden;" name="media"><source src="http://d.liveatc.net/klga_twr" type="audio/mpeg"></audio>
-<audio controls="" loop autoplay="" style="visibility:hidden;" name="media"><source src="chill.mp3" type="audio/mpeg"></audio>
-	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-	<script src="script.js"> </script>
+	<audio id="atc-audio" controls="" autoplay="">
+		<source src="http://d.liveatc.net/klga_twr" type="audio/mpeg">
+	</audio>
+	<audio id="music-audio" controls="" loop autoplay="">
+		<source src="chill.mp3" type="audio/mpeg">
+	</audio>
+	<div class="controls">
+		<div id="pause">PAUSE</div>
+		<div id="atc-control">
+			<div id="atc-volume" class="volume"></div>
+		</div>
+		<div id="music-control">
+			<div id="music-volume" class="volume"></div>
+		</div>
+	</div>
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+<script src="script.js"> </script>
 </body></html>
