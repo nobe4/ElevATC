@@ -30,7 +30,10 @@ $(function() {
 			musicAudio.play();
 		}
 		playing = !playing;
-		playPauseButton.text(playing?"PAUSE":"PLAY");
+		playPauseButton.text;
+		playPauseButton.css('background-image', 'url(img/'
+													+ (playing?"pause":"play")
+													+ '.svg)')
 	});
 
 	// update audio and displayed volumes
@@ -41,6 +44,8 @@ $(function() {
 		//update display
 		atcVolume.text(volumes.atc);
 		musicVolume.text(volumes.music);
+		atcVolume.css('background-image', 'url(img/volume' + volumes.atc + '.svg)')
+		musicVolume.css('background-image', 'url(img/volume' + volumes.music + '.svg)')
 	}
 
 	// handle volume for atc

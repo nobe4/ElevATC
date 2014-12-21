@@ -12,15 +12,17 @@
 	<audio id="music-audio" controls="" loop autoplay="">
 		<source src="chill.mp3" type="audio/mpeg">
 	</audio>
-	<div class="controls">
-		<div id="play-pause">PAUSE</div>
-		<div id="atc-control">
+	<ul id="controls">
+		<li id="play-pause"></li>
+		<li id="atc-control">
+			<p>ATC</p>
 			<div id="atc-volume" class="volume">100</div>
-		</div>
-		<div id="music-control">
+		</li>
+		<li id="music-control">
+			<p>MUSIC </p>
 			<div id="music-volume" class="volume">100</div>
-		</div>
-	</div>
+		</li>
+	</ul>
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 <script src="script.js"> </script>

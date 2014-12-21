@@ -1,11 +1,43 @@
+body {
+    font-size: 1.5em;
+}
+
+/* apply a pattern to the background */
 div.backstretch:before{
 	content : "";
 	height: 100%;
 	width: 100%;
-	background: url('pattern.png');
+	background: url('img/pattern.png');
 	position: absolute;
 }
 
 audio{
 	visibility:hidden;
+}
+
+#controls {
+	position: absolute;
+	bottom: 3em;
+	list-style: none;
+	padding: 0;
+}
+
+.volume {
+	background-image: url('img/volume100.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+li {
+	height: 2em;
+	width: 4em;
+    display: inline-block;
+    text-align: center;
+}
+
+#play-pause {
+	background-image: url('img/play.svg');
+	background-repeat: no-repeat;
+	background-size: 40%;
+	background-position: center;
 }
