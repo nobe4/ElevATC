@@ -10,9 +10,23 @@ $(function() {
 		}
 		$.backstretch(images,{duration : 50000, fade:5000});
 	}
+	var atcAudio = 	$("#atc-audio")[0];
+	var musicAudio = $("#music-audio")[0];
+	var playPauseButton = $("#play-pause");
 
-	$("#pause").click(function(){
-		$("#atc-audio")[0].pause();
-		$("#music-audio")[0].pause();
+	var playing = true;
+
+	console.log(playPauseButton);
+	playPauseButton.click(function(){
+		if(playing){
+			atcAudio.pause();
+			musicAudio.pause();
+		} else {
+			atcAudio.play();
+			musicAudio.play();
+		}
+		playing = !playing;
+		console.log(playing);
+		playPauseButton.text(playing?"PAUSE":"PLAY");
 	});
 });
