@@ -1,5 +1,5 @@
 $(function() {
-	$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=plane&tagmode=any&format=json&jsoncallback=?", handleImages);
+	$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=airplane&tagmode=any&format=json&jsoncallback=?", handleImages);
 
 	function handleImages(data){
 		var images = [];
