@@ -27,9 +27,8 @@ audio{
 ul#controls {}
 
 .volume {
-	background-image: url('img/volume100.svg');
-    background-repeat: no-repeat;
-    background-position: center;
+	width: 2em;
+	height: 2em;
 	/* margin: 1em; */
 }
 

@@ -9,7 +9,7 @@ $(function() {
 		}
 		$.backstretch(images,{duration : 50000, fade:5000});
 	}
-	var atcAudio = 	$("#atc-audio")[0];
+	var atcAudio = 	$("#atc-audio");
 	var musicAudio = $("#music-audio")[0];
 	var playPauseButton = $("#play-pause");
 	var atcVolume = $("#atc-volume");
@@ -42,10 +42,12 @@ $(function() {
 		atcAudio.volume = volumes.atc / 100.0;
 		musicAudio.volume = volumes.music / 100.0;
 		//update display
-		atcVolume.text(volumes.atc);
-		musicVolume.text(volumes.music);
-		atcVolume.css('background-image', 'url(img/volume' + volumes.atc + '.svg)')
-		musicVolume.css('background-image', 'url(img/volume' + volumes.music + '.svg)')
+//		atcVolume.text(volumes.atc);
+//		musicVolume.text(volumes.music);
+//		atcVolume.css('background-image', 'url(img/volume' + volumes.atc + '.svg)')
+//		musicVolume.css('background-image', 'url(img/volume' + volumes.music + '.svg)')
+		atcVolume.attr("src",'img/volume' + volumes.atc + '.svg');
+		musicVolume.attr("src",'img/volume' + volumes.music + '.svg');
 	}
 
 	// handle volume for atc
