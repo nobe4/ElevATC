@@ -9,7 +9,7 @@ $(function() {
 		}
 		$.backstretch(images,{duration : 50000, fade:5000});
 	}
-	var atcAudio = 	$("#atc-audio");
+	var atcAudio = 	$("#atc-audio")[0];
 	var musicAudio = $("#music-audio")[0];
 	var playPauseButton = $("#play-pause");
 	var atcVolume = $("#atc-volume");
