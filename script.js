@@ -13,7 +13,7 @@ var audio = {
 		"url": "elevator.mp3",
 		"volume": 100
 	}
-}
+};
 
 var atcAudio = 	$("#atc-audio")[0];
 var musicAudio = $("#music-audio")[0];
@@ -28,15 +28,14 @@ jQuery.getJSON("musicList.json", function(data){
 	});
 });
 
-//	Init function called on page load
-function init(){
+$(function() {
 	// Init sliding
 	slideInit();
-	
+
 	// Volume cookies
 	audio.atc.volume = (loadCookie("atcVolume") != false ? loadCookie("atcVolume") : audio.atc.volume);
 	audio.music.volume = (loadCookie("musicVolume") != false ? loadCookie("musicVolume") : audio.music.volume);
-	
+
 	// Stream cookies
 	audio.atc.name = (loadCookie("atcName") != false ? loadCookie("atcName") : audio.atc.name);
 	audio.atc.streamName = (loadCookie("atcSName") != false ? loadCookie("atcSName") : audio.atc.streamName);
@@ -44,22 +43,21 @@ function init(){
 		audio.atc.url = (loadCookie("atcStream") != false ? loadCookie("atcStream") : audio.atc.url);
 		loadStream("atc-audio", audio.atc.url);
 	}
-	
+
 	// Music cookies
 	audio.music.name = (loadCookie("musicUrl") != false ? loadCookie("music") : audio.music.name);
 	if(loadCookie("musicUrl")){
 		audio.music.url = (loadCookie("musicUrl") != false ? loadCookie("musicUrl") : audio.music.url);
 		loadStream("music-audio", audio.music.url);
 	}
-	
+
 	// Update Values
 	updateVolumes();
 	setFrontPageValues();
-	
+
 	// Remove the loading screen
-	$( "#loadingScreen" ).fadeOut( "slow", function() {
-	});
-}
+	$( "#loadingScreen" ).fadeOut( "slow", function() {});
+})
 
 // Grab images from flickr
 $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=airplane&tagmode=any&format=json&jsoncallback=?", handleImages);
@@ -98,7 +96,7 @@ function updateVolumes(){
 	//	ATC
 	atcAudio.volume = audio.atc.volume / 100.0;
 	$("#atc-control").attr("volume", audio.atc.volume);
-	
+
 	//	Music
 	musicAudio.volume = audio.music.volume / 100.0;
 	$("#music-control").attr("volume", audio.music.volume);
@@ -167,14 +165,14 @@ $("#cloud3").click(function(){
 $("#musicSelector").on('click', '.musicSelector-listElement', function(){
 	audio.music.name = $(this).text();
 	audio.music.url = $(this).attr("data") + ".mp3";
-	
+
 	collapseSelector();
 	setFrontPageValues();
-	
+
 	// Set cookies
 	$.cookie('music', audio.music.name, { expires: 7 });
 	$.cookie('musicUrl', audio.music.url, { expires: 7 });
-	
+
 	loadStream("music-audio", audio.music.url);
 });
 
@@ -182,3 +180,4 @@ $("#musicSelector").on('click', '.musicSelector-listElement', function(){
 $(window).resize(function(){
 	slideInit();
 });
+

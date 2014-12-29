@@ -5,10 +5,8 @@
 		<title>ElevATC</title>
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
-		<script src="slide.js"></script>
-		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
 	</head>
-	<body onLoad="init()">
+	<body>
 		<div id="slide0" class="slide">
 			<img id="cloud" src="img/cloud.png">
 			<div id="titleContainer">
@@ -26,7 +24,7 @@
 
 			<div id="menu">
 				<div id="ATCMenu" class="optionMenu">
-					<div class="pellet" onClick="slideLeft()">
+					<div class="pellet slideLeft">
 						ATC
 					</div>
 					<ul class="infoList">
@@ -36,12 +34,12 @@
 					</ul>
 				</div>
 				<div id="FlyMenu" class="optionMenu">
-					<div class="pellet" onClick="slideUp()">
+					<div class="pellet slideUp">
 						Fly
 					</div>
 				</div>
 				<div id="MusicMenu" class="optionMenu">
-					<div class="pellet" onClick="slideRight()">
+					<div class="pellet slideRight">
 						Music
 					</div>
 					<ul class="infoList">
@@ -54,7 +52,7 @@
 			<div id="ATC_title">
 				<h3>ATC</h3>
 				<div id="ATCPellet" class="pellet">
-					<img class="plane planeRight" src="img/plane.svg" onClick="slideRight()">
+					<img class="plane planeRight slideRight" src="img/plane.svg">
 				</div>
 			</div>
 			<div id="popup" display="none">
@@ -66,7 +64,7 @@
 			<div id="Music_title">
 				<h3>Music</h3>
 				<div id="MusicPellet" class="pellet">
-					<img class="plane planeLeft" src="img/plane.svg" onClick="slideLeft()">
+					<img class="plane planeLeft slideLeft" src="img/plane.svg">
 				</div>
 			</div>
 			<div id="musicSelector" collapsed="true">
@@ -106,17 +104,17 @@
 				<div>
 					<h1 class="title">ElevATC</h1>
 					<h2 class="subtitle">From the sky to your lounge</h2>
-					
 				</div>
 			</div>
 			<h2 class="subtitle">Loading ...</h2>
 			<img class="plane planeLeft" src="img/plane.svg">
 		</div>
-
 		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script src="jquery.cookie-1.4.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-		<script src="map.js"></script>
+		<script src="slide.js"></script>
 		<script src="script.js"> </script>
+		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
+		<script src="map.js"></script>
 	</body>
 </html>
