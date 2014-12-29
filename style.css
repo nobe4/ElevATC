@@ -206,6 +206,14 @@ ul{
 	white-space: nowrap;
 }
 
+.popupChoice{
+	cursor:pointer;
+}
+
+.popupChoice:hover {
+    color: #22a7f0;
+}
+
 /*======================= Slide 2 (Music) ================= */
 
 #slide2{
