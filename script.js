@@ -177,3 +177,8 @@ $("#musicSelector").on('click', '.musicSelector-listElement', function(){
 	
 	loadStream("music-audio", audio.music.url);
 });
+
+// Handle resize
+$(window).resize(function(){
+	slideInit();
+});
