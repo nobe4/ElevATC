@@ -1,4 +1,7 @@
 [ElevATC](http://nobe4.github.io/ElevATC/)
 =======
 
-Live ATC Elevator
+From the Sky to your Lounge.
+
+Questions/Bugs ? -> [Issues](https://github.com/nobe4/ElevATC/issues/new)
+===
