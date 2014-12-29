@@ -9,8 +9,8 @@ var audio = {
 		"volume": 100
 	},
 	"music": {
-		"name": "Elevator",
-		"url": "elevator",
+		"name": "Elevator Music",
+		"url": "elevator.mp3",
 		"volume": 100
 	}
 }
@@ -34,21 +34,21 @@ function init(){
 	slideInit();
 	
 	// Volume cookies
-	audio.atc.volume = loadCookie("atcVolume");
-	audio.music.volume = loadCookie("musicVolume");
+	audio.atc.volume = (loadCookie("atcVolume") != false ? loadCookie("atcVolume") : audio.atc.volume);
+	audio.music.volume = (loadCookie("musicVolume") != false ? loadCookie("musicVolume") : audio.music.volume);
 	
 	// Stream cookies
-	audio.atc.name = loadCookie("atcName");
-	audio.atc.streamName = loadCookie("atcSName");
+	audio.atc.name = (loadCookie("atcName") != false ? loadCookie("atcName") : audio.atc.name);
+	audio.atc.streamName = (loadCookie("atcSName") != false ? loadCookie("atcSName") : audio.atc.streamName);
 	if(loadCookie("atcStream")){
-		audio.atc.url = loadCookie("atcStream");
+		audio.atc.url = (loadCookie("atcStream") != false ? loadCookie("atcStream") : audio.atc.url);
 		loadStream("atc-audio", audio.atc.url);
 	}
 	
 	// Music cookies
-	audio.music.name = loadCookie("music");
+	audio.music.name = (loadCookie("musicUrl") != false ? loadCookie("music") : audio.music.name);
 	if(loadCookie("musicUrl")){
-		audio.music.url = loadCookie("musicUrl")
+		audio.music.url = (loadCookie("musicUrl") != false ? loadCookie("musicUrl") : audio.music.url);
 		loadStream("music-audio", audio.music.url);
 	}
 	
