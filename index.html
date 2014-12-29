@@ -1,29 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>ElevATC</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-	<audio id="atc-audio" controls="" autoplay="">
-		<source src="http://d.liveatc.net/klga_twr" type="audio/mpeg">
-	</audio>
-	<audio id="music-audio" controls="" loop autoplay="">
-		<source src="chill.mp3" type="audio/mpeg">
-	</audio>
-	<ul id="controls">
-		<li id="play-pause"></li>
-		<li id="atc-control">
-			<p style="margin-bottom: 0.5em;">ATC</p>
-			<img src="img/volume100.svg" id="atc-volume" class="volume" >
-		</li>
-		<li id="music-control">
-			<p style="margin-bottom: 0.5em;">MUSIC </p>
-			<img src="img/volume100.svg" id="music-volume" class="volume" >
-		</li>
-	</ul>
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
-<script src="script.js"> </script>
-</body></html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ElevATC</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
+		<script src="slide.js"></script>
+		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
+	</head>
+	<body onLoad="init()">
+		<div id="slide0" class="slide">
+			<img id="cloud" src="img/cloud.png">
+			<div id="titleContainer">
+				<div>
+					<img class="plane planeLeft" src="img/plane.svg">
+				</div>
+				<div>
+					<h1 class="title">ElevATC</h1>
+					<h2 class="subtitle">From the sky to your lounge</h2>
+				</div>
+				<div>
+					<img class="plane planeRight" src="img/plane.svg">
+				</div>
+			</div>
+
+			<div id="menu">
+				<div id="ATCMenu" class="optionMenu">
+					<div class="pellet" onClick="slideLeft()">
+						ATC
+					</div>
+					<ul class="infoList">
+						<li id="ATCName"></li>
+						<li id="ATCSName"></li>
+<!--						<li id="ATCFreq"></li>-->
+					</ul>
+				</div>
+				<div id="FlyMenu" class="optionMenu">
+					<div class="pellet" onClick="slideUp()">
+						Fly
+					</div>
+				</div>
+				<div id="MusicMenu" class="optionMenu">
+					<div class="pellet" onClick="slideRight()">
+						Music
+					</div>
+					<ul class="infoList">
+						<li id="Music"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="slide1" class="slide">
+			<div id="ATC_title">
+				<h3>ATC</h3>
+				<div id="ATCPellet" class="pellet">
+					<img class="plane planeRight" src="img/plane.svg" onClick="slideRight()">
+				</div>
+			</div>
+			<div id="popup" display="none">
+				<div id="popupContent"></div>
+			</div>
+			<div id="map" class="map"></div>
+		</div>
+		<div id="slide2" class="slide">
+			<div id="Music_title">
+				<h3>Music</h3>
+				<div id="MusicPellet" class="pellet">
+					<img class="plane planeLeft" src="img/plane.svg" onClick="slideLeft()">
+				</div>
+			</div>
+			<div id="musicSelector" collapsed="true">
+				<div id="musicSelector-display">
+					<span id="musicSelector-displayMusic"></span>
+					<a href="#" id="musicSelector-collapse">&#9660;</a>
+				</div>
+				<ul id="musicSelector-list">
+					<li class="musicSelector-listElement" data="none">None</li>
+				</ul>
+			</div>
+		</div>
+		<div id="slide3" class="slide">
+			<img id="cloud3" src="img/cloud.png">
+			<div class="dotOverlay">
+				<audio id="atc-audio" controls="">
+					<source id="atc_src" src="http://d.liveatc.net/lfpo_dep" type="audio/mpeg">
+				</audio>
+				<audio id="music-audio" controls="" loop>
+					<source id="music_src" src="music/elevator.mp3" type="audio/mpeg">
+				</audio>
+				<div id="controls">
+					<div class="pellet" id="atc-control" volume="100">
+						<div class="pieControl"></div>
+						<div class="insidePellet" id="atc-volume">ATC</div>
+					</div>
+					<div class="pellet" id="play-pause"><img id="playpauseImg" src="img/pause.svg"></div>
+					<div class="pellet" id="music-control" volume="100">
+						<div class="pieControl"></div>
+						<div class="insidePellet" id="music-volume">Music</div>
+					</div>
+				</div>
+				<img 
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="jquery.cookie-1.4.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+		<script src="map.js"></script>
+		<script src="script.js"> </script>
+	</body>
+</html>

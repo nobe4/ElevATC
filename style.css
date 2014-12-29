@@ -1,10 +1,328 @@
+html, body{
+	width: 100%;
+	margin: 0px;
+	height: 100%;
+	overflow: hidden;
+}
+.map {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.title{
+	font: 400 111px Verdana;
+	color: #ffffff;
+	margin: auto;
+}
+
+.subtitle{
+	margin-top: -20px;
+	color: #ffffff;
+	font: 400 38px 'Times New Roman';
+}
+
+.slide{
+	box-sizing:border-box;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	text-align: center;
+}
+
+ul{
+	padding: 0;
+}
+
+.planeLeft{
+	
+}
+
+.planeRight{
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg); 
+}
+
+/*======================= Slide 0 ================= */
+#slide0{
+	border-top: #22a7f0 14px solid;
+	background-color: #1e8bc3;
+	text-align: center;
+}
+
+#titleContainer{
+	display: inline-block;
+	margin: auto;
+	margin-top: 20px;
+	list-style-type: none;
+	text-align: center;
+	padding: 0;
+}
+
+#titleContainer div{
+	margin-right: 40px;
+	float: left;
+	list-style-position:inside;
+}
+
+#titleContainer div:last-child{
+	margin:0;
+}
+
+#cloud{
+	width: 400px;
+	margin: auto;
+	margin-top: -14px;
+	display: block;
+}
+
+#menu{
+	width: 80%;
+	margin-top: 20px;
+	display: inline-block;
+}
+#FlyMenu{
+	padding-top: 20%;
+}
+
+.optionMenu{
+	width: 33%;
+	float: left;
+}
+
+.pellet{
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	border-radius: 50%;
+	font: 400 50px Verdana;
+	color: #1e8bc3;
+	background-color: white;
+	line-height: 200px;
+	vertical-align: middle;
+	transition: background-color 2s;
+	transition: color 1s;
+	position: relative;
+}
+
+.pellet:hover{
+	background-color: #22a7f0;
+	color: white;
+	cursor: pointer;
+}
+
+.infoList{
+	list-style-type: none;
+	font: 400 30px Verdana;
+	color: #ffffff;
+}
+
+#titleContainer .plane{
+	width: 170px;
+	height: 170px;
+}
+
+/*======================= Slide 1 (ATC) ================= */
+
+#slide1{
+	
+}
+
+#ATC_title{
+	display: inline-block;
+	z-index: 1000;
+	position: absolute;
+	margin-top: 30px;
+}
+
+#ATC_title h3{
+	font: 400 80px Verdana;
+	color: #ffffff;
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#ATCPellet{
+	background-color: #1e8bc3;
+}
+
+#ATCPellet img{
+	margin: 25px 25px;
+	width: 150px;
+	height: 150px;
+}
+
+.map {
+	z-index: 0;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#popup {
+	position: absolute;
+	background-color: #1e8bc3;
+	padding: 10px;
+	border-radius: 10px;
+	top: 30px;
+	left: -100px;
+	color: white;
+	font: 400 18px Verdana;
+	text-align: center;
+}
+#popup:after, #popup:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+#popup:after {
+	border-bottom-color: #1e8bc3;
+	border-width: 30px;
+	margin-left: -30px;
+}
+
+
+#popup ul, #popup span{
+	list-style-type: none;
+	padding: 0;
+	white-space: nowrap;
+}
+
+/*======================= Slide 2 (Music) ================= */
+
+#slide2{
+	background: url("img/musicBG.png");
+}
+
+
+#Music_title{
+	display: inline-block;
+	z-index: 1000;
+	position: relative;
+	margin-top: 30px;
+}
+
+#Music_title h3{
+	font: 400 80px Verdana;
+	color: #ffffff;
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#MusicPellet{
+	background-color: #1e8bc3;
+	position: relative;
+}
+
+#MusicPellet img{
+	margin: 25px 25px;
+	width: 150px;
+	height: 150px;
+}
+
+#musicSelector{
+	position: relative;
+	width: 40%;
+	margin-left: 30%;
+	font: 400 30px Verdana;
+	color: #22a7f0;
+	text-align: left;
+	margin-top: 30px;
+	overflow: hidden;
+}
+
+#musicSelector-display{
+	height: 70px;
+	background-color: white;
+	padding: 10px;
+	padding-left: 50px;
+	line-height: 70px;
+	vertical-align: middle;
+	position: relative;
+}
+
+#musicSelector-collapse{
+	position: absolute;
+	right: 5%;
+	color: #22a7f0;
+	text-decoration: none;
+	border-left: 1px lightGrey solid;
+	padding-left: 5%;
+}
+
+#musicSelector-list{
+	padding: 0;
+	height: 350px;
+	width: 100%;
+	overflow: auto;
+	position: relative;
+	padding-right: 20px;
+}
+
+#musicSelector-list li{
+	list-style: none;
+	height: 50px;
+	background-color: white;
+	padding: 10px;
+	padding-left: 50px;
+	line-height: 50px;
+	vertical-align: middle;
+	position: relative;
+	margin: 0;
+	margin-top: 10px;
+}
+
+#musicSelector-list li:hover{
+	background-color: #1e8bc3;
+	color: white;
+}
+
+#musicSelector[collapsed="true"] #musicSelector-list{
+	display: none;
+}
+
+
+
+/*======================= Slide 3 (Display) ================= */
+
 /* apply a pattern to the background */
-div.backstretch:before{
-	content : "";
+.dotOverlay{
+	z-index: 100;
+	position: absolute;
 	height: 100%;
 	width: 100%;
 	background: url('img/pattern.png');
+}
+
+
+#cloud3{
+	z-index: 101;
 	position: absolute;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg); 
+	width: 400px;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+	bottom: 0px;
 }
 
 audio{
@@ -12,16 +330,7 @@ audio{
 }
 
 #controls {
-	background-color: rgba(189, 195, 199, 0.7);
-	position: absolute;
-	bottom: 0em;
-	list-style: none;
-	padding: 0;
-	border-radius: 11px;
-	height: 5.3em;
-	box-shadow: rgba(12, 12, 12, 0.33) 0px 3px 3px;
-	margin: 0em;
-	margin: 1em;
+	
 }
 
 ul#controls {}
@@ -32,16 +341,82 @@ ul#controls {}
 	/* margin: 1em; */
 }
 
-li {
-	height: 3em;
-	width: 5em;
-	display: inline-block;
-	text-align: center;
+#play-pause, #atc-control, #music-control{
+	background-color: #1e8bc3;
+	border: 10px solid #22a7f0;
+	color : white;
 }
 
 #play-pause {
-	background-image: url('img/pause.svg');
-	background-repeat: no-repeat;
-	background-size: 40%;
-	background-position: center;
+	width: 90px;
+	height: 90px;
+	line-height: 90px;
+	font-size: 50px;
+	margin-left: 20px;
+}
+
+#atc-control, #music-control{
+	width: 90px;
+	height: 90px;
+	line-height: 70px;
+	font-size: 20px;
+	border: none;
+	background-color: black;
+	overflow: hidden;
+}
+
+#music-control{
+	margin-left: 20px;
+}
+
+#playpauseImg{
+	margin: 20px 20px;
+	width: 50px;
+	height: 50px;
+}
+
+.pieControl{
+	position: absolute;
+	width: 90px;
+	height: 90px;
+	background-color: #22a7f0;
+}
+
+.pellet[volume="0"] .pieControl {
+	display: none;
+}
+
+.pellet[volume="25"] .pieControl {
+	left: 45px;
+	top: -45px;
+}
+
+.pellet[volume="50"] .pieControl {
+	left: 45px;
+	top: 0px;
+}
+
+.pellet[volume="75"] .pieControl {
+	left: -45px;
+	top: -45px;
+	background-color: black;
+}
+
+.pellet[volume="75"] {
+	background-color: #22a7f0 !important;
+}
+
+.pellet[volume="100"] .pieControl {
+	left: 0px;
+	top: 0px;
+}
+
+.insidePellet{
+	background-color: #1e8bc3;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
 }
