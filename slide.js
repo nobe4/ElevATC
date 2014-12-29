@@ -15,7 +15,7 @@ function slideLeft(){
 		slideBlock = true;
 		$( ".slide" ).animate({
 			left: "+=" + $( window ).width()
-		}, 2000, "swing", function() {
+		}, 1500, "swing", function() {
 			slideBlock = false;
 		});
 	}
@@ -26,7 +26,7 @@ function slideRight(){
 		slideBlock = true;
 		$( ".slide" ).animate({
 			left: "-=" + $( window ).width()
-		}, 2000, "swing", function() {
+		}, 1500, "swing", function() {
 			slideBlock = false;
 		});
 	}
@@ -37,7 +37,7 @@ function slideUp(){
 		slideBlock = true;
 		$( ".slide" ).animate({
 			top: "+=" + $( window ).height()
-		}, 2000, "swing", function() {
+		}, 1500, "swing", function() {
 			$("#atc-audio")[0].play();
 			$("#music-audio")[0].play();
 			slideBlock = false;
@@ -52,7 +52,7 @@ function slideDown(){
 		$("#music-audio")[0].pause();
 		$( ".slide" ).animate({
 			top: "-=" + $( window ).height()
-		}, 2000, "swing", function() {
+		}, 1500, "swing", function() {
 				slideBlock = false;
 		});
 	}
