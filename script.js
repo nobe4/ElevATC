@@ -55,6 +55,10 @@ function init(){
 	// Update Values
 	updateVolumes();
 	setFrontPageValues();
+	
+	// Remove the loading screen
+	$( "#loadingScreen" ).fadeOut( "slow", function() {
+	});
 }
 
 // Grab images from flickr
