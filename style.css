@@ -79,10 +79,30 @@ ul{
 }
 
 #cloud{
-	width: 400px;
+	box-sizing: border-box;
+	width: 440px;
+	height: 240px;
 	margin: auto;
-	margin-top: -14px;
+	margin-top: -130px;
+	padding: 20px 0;
 	display: block;
+	z-index: 1;
+	position: relative;
+
+	background-image: url("img/cloud.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+#cloud span{
+	display: block;
+	text-align: center;
+	font: 400 50px Verdana;
+	line-height: 100px;
+	color: #1e8bc3;
+	vertical-align: middle;
+	cursor: pointer;
 }
 
 #menu{
@@ -332,23 +352,6 @@ ul{
 	height: 100%;
 	width: 100%;
 	background: url('img/pattern.png');
-}
-
-
-#cloud3{
-	z-index: 101;
-	position: absolute;
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	transform: rotate(180deg); 
-	width: 400px;
-	left:0;
-	right:0;
-	margin-left:auto;
-	margin-right:auto;
-	bottom: 0px;
 }
 
 audio{

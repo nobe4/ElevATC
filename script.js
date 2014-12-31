@@ -156,11 +156,6 @@ $("#musicSelector-display").click(function(){
 	collapseSelector();
 });
 
-// Handle cloud click on slide 3
-$("#cloud3").click(function(){
-	slideDown();
-});
-
 // Handle music selection
 $("#musicSelector").on('click', '.musicSelector-listElement', function(){
 	audio.music.name = $(this).text();
