@@ -184,19 +184,19 @@ ul{
 }
 
 #popup {
-	position: absolute;
+	position: static;
+	box-sizing: border-box;
 	background-color: #1e8bc3;
 	padding: 10px;
 	border-radius: 10px;
-	top: 30px;
-	left: -100px;
+	margin-top: 15px;
+	margin-left: -50%;
+	width: 100%;
 	color: white;
 	font: 400 18px Verdana;
 	text-align: center;
 }
 #popup:after, #popup:before {
-	bottom: 100%;
-	left: 50%;
 	border: solid transparent;
 	content: " ";
 	height: 0;
@@ -206,8 +206,9 @@ ul{
 }
 #popup:after {
 	border-bottom-color: #1e8bc3;
-	border-width: 30px;
-	margin-left: -30px;
+	border-width: 15px;
+	top: -15px;
+	left: -15px;
 }
 
 
