@@ -139,9 +139,9 @@ function onClickAirport(evt) {
 		audio.atc.name = feature.o.fName;
 		
 		// Refresh front page values
-//		setFrontPageValues();
+		//setFrontPageValues();
 		
-		popupOverlay.setPosition(evt.coordinate);		
+		popupOverlay.setPosition(feature.o.geometry.k);
 		
 		var text = "";	// Popup text
 		if( Object.prototype.toString.call( feature.o.stream ) === '[object Array]'){
