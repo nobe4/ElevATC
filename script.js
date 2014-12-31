@@ -104,8 +104,8 @@ function updateVolumes(){
 
 // Set front page values
 function setFrontPageValues(){
-	$("#ATCName").text(audio.atc.name);
-	$("#ATCSName").text(audio.atc.streamName);
+	$("#ATCName").html(audio.atc.name.replace(/\//g, "<wbr>/<wbr>"));
+	$("#ATCSName").html(audio.atc.streamName.replace(/\//g, "<wbr>/<wbr>"));
 	$("#ATCFreq").text(audio.atc.freq);
 
 	$("#Music").text(audio.music.name);
