@@ -5,11 +5,14 @@
 		<title>ElevATC</title>
 		<link rel="stylesheet" href="style.css">
 		<link rel="icon" type="image/png" href="img/icon.png">
-		<link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
+		<link rel="stylesheet" href="ol.css" type="text/css">
 	</head>
 	<body>
 		<div id="slide0" class="slide">
-			<img id="cloud" src="img/cloud.png">
+			<div id="cloud">
+				<span class="slideDown">Land</span>
+				<span class="slideUp">Fly</span>
+			</div>
 			<div id="titleContainer">
 				<div>
 					<img class="plane planeLeft" src="img/plane.svg">
@@ -39,10 +42,6 @@
 					<a href="http://www.liveatc.net">
 						<img src="img/liveatc.png">
 					</a>
-
-					<div class="pellet slideUp">
-						Fly
-					</div>
 				</div>
 				<div id="MusicMenu" class="optionMenu">
 					<div class="pellet slideRight">
@@ -84,7 +83,6 @@
 			</div>
 		</div>
 		<div id="slide3" class="slide">
-			<img id="cloud3" src="img/cloud.png">
 			<div class="dotOverlay">
 				<audio id="atc-audio" controls="">
 					<source id="atc_src" src="http://d.liveatc.net/lfpo_dep" type="audio/mpeg">
@@ -121,7 +119,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 		<script src="slide.js"></script>
 		<script src="script.js"> </script>
-		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
+		<script src="ol.js" type="text/javascript"></script>
 		<script src="map.js"></script>
 	</body>
 </html>
