@@ -136,22 +136,22 @@ function onClickAirport(evt) {
 	
 	// If an airport is selected
 	if(feature != null){
-		audio.atc.name = feature.o.fName;
+		audio.atc.name = feature.j.fName;
 		
 		// Refresh front page values
 		//setFrontPageValues();
 		
-		popupOverlay.setPosition(feature.o.geometry.k);
+		popupOverlay.setPosition(feature.j.geometry.k);
 		
 		var text = "";	// Popup text
-		if( Object.prototype.toString.call( feature.o.stream ) === '[object Array]'){
+		if( Object.prototype.toString.call( feature.j.stream ) === '[object Array]'){
 			text+="<ul>";
-			for(i=0; i<feature.o.stream.length; i++)
-				text += "<li class='popupChoice' url='"+ feature.o.stream[i].URLName +"'>" + feature.o.stream[i].Description + "</li>";
+			for(i=0; i<feature.j.stream.length; i++)
+				text += "<li class='popupChoice' url='"+ feature.j.stream[i].URLName +"'>" + feature.j.stream[i].Description + "</li>";
 			text+="</ul>";
 		}
 		else{
-			text = "<span class='popupChoice' url='"+ feature.o.stream.URLName +"'>" + feature.o.stream.Description + "</span>";
+			text = "<span class='popupChoice' url='"+ feature.j.stream.URLName +"'>" + feature.j.stream.Description + "</span>";
 		}
 		
 		$("#popupContent").html( text );
