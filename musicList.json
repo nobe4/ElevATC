@@ -7,6 +7,10 @@
 		{
 			"name" : "Chill",
 			"url" : "chill"
-		}
+		},
+        {
+            "name" : "The Millionaire's Holiday",
+            "url" : "mholiday"
+        }
 	]
 }
