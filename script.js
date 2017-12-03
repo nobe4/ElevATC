@@ -75,7 +75,7 @@ function handleImages(data){
 // Load cookie
 // Return false if the cookie is empty
 function loadCookie (cookie){
-	cookie = $.cookie(cookie)
+	cookie = Cookies.get(cookie)
 	if( cookie != undefined)
 		return cookie;
 	else
@@ -140,14 +140,14 @@ playPauseButton.click(function(){
 // handle volume for atc
 atcVolume.click(function(){
 	audio.atc.volume = (audio.atc.volume - 25 >= 0)?audio.atc.volume - 25:100;
-	$.cookie('atcVolume', audio.atc.volume, { expires: 7 });	// Set cookie
+	Cookies.set('atcVolume', audio.atc.volume, { expires: 7 });	// Set cookie
 	updateVolumes();
 });
 
 // handle volume for music
 musicVolume.click(function(){
 	audio.music.volume = (audio.music.volume - 25 >= 0)?audio.music.volume - 25:100;
-	$.cookie('musicVolume', audio.music.volume, { expires: 7 });	// Set cookie
+	Cookies.set('musicVolume', audio.music.volume, { expires: 7 });	// Set cookie
 	updateVolumes();
 });
 
@@ -165,8 +165,8 @@ $("#musicSelector").on('click', '.musicSelector-listElement', function(){
 	setFrontPageValues();
 
 	// Set cookies
-	$.cookie('music', audio.music.name, { expires: 7 });
-	$.cookie('musicUrl', audio.music.url, { expires: 7 });
+	Cookies.set('music', audio.music.name, { expires: 7 });
+	Cookies.set('musicUrl', audio.music.url, { expires: 7 });
 
 	loadStream("music-audio", audio.music.url);
 });
@@ -175,4 +175,3 @@ $("#musicSelector").on('click', '.musicSelector-listElement', function(){
 $(window).resize(function(){
 	slideInit();
 });
-

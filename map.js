@@ -1,165 +1,44 @@
-var styleCache = {};
-
-// Airpot dot layer
-var vectorLayer = new ol.layer.Vector({
-    source: new ol.source.GeoJSON({
-        object: generateGeoJson("data.json")	// Generate GeoJson data from json(XML)
-    }),
-    style: function(feature, resolution) {
-		var complete = resolution < 6000 ? true : false;
-		var text = resolution < 6000 ? feature.get('name') : '';
-		if(complete){
-			if (!styleCache[text]) {
-				styleCache[text] = [new ol.style.Style({
-					image: new ol.style.Circle({
-						fill: new ol.style.Fill({
-							color: '#1e8bc3'
-						}),
-						stroke: new ol.style.Stroke({
-							color: '#fff',
-							width: 1
-						}),
-						radius : 12,
-					})
-				})];
-			}
-		}
-		else{
-			styleCache[text] = [new ol.style.Style({
-				image: new ol.style.Circle({
-					fill: new ol.style.Fill({
-						color: '#1e8bc3'
-					}),
-					stroke: new ol.style.Stroke({
-						color: '#fff',
-						width: 1
-					}),
-					radius : 8,
-				})
-
-			})];
-		}
-        return styleCache[text];
-    }
-});
-
-// Popup Overlay
-var popupOverlay = new ol.Overlay({
-	element: $("#popup")
-});
-
 // Create map object
-var map = new ol.Map({
-    layers: [
-        new ol.layer.Tile({
-            source: new ol.source.MapQuest({
-				layer: 'sat'
-            })
-        }),
-        vectorLayer
-    ],
-    target: 'map',
-//	renderer: 'webgl',
-	overlays: [popupOverlay],
-    view: new ol.View({
-        center: [48.72551, 2.359443],
-        zoom: 3,
-		minZoom : 3,
-		maxZoom : 9,
-		extent: [-20037508.34,-20037508.34,20037508.34,20037508.34]
-    })
-});
-
-var highlightStyleCache = {};
-
-
-var featureOverlay = new ol.FeatureOverlay({
-	map: map,
-	style: function(feature, resolution) {
-		var text = feature.get('name');
-		if (!highlightStyleCache[text]) {
-			highlightStyleCache[text] = [new ol.style.Style({
-				text: new ol.style.Text({
-					font: '30px Calibri,sans-serif',
-					text: text,
-					offsetY: -30,
-					fill: new ol.style.Fill({
-						color: '#1e8bc3'
-					}),
-					stroke: new ol.style.Stroke({
-						color: '#000',
-						width: 1
-					}),
-				}),
-				image: new ol.style.Circle({
-					fill: new ol.style.Fill({
-						color: '#fff'
-					}),
-					stroke: new ol.style.Stroke({
-						color: '#1e8bc3',
-						width: 1
-					}),
-					radius : 12,
-				})
-
-			})];
+var geojson = generateGeoJson("data.json")
+var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+var osm = new L.TileLayer(osmUrl, {minZoom: 3, maxZoom:9, attribution: osmAttrib});
+var map = L.map('map').setView([48.72551, 2.359443], 3);
+map.addLayer(osm);
+var airportLayer = L.geoJSON(
+	generateGeoJson("data.json"),
+	{
+		onEachFeature: createAirportPopup,
+		pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, {
+				radius: 8,
+				color: "#ffffff",
+				fillColor: "#1e8bc3",
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 1
+			})
 		}
-		return highlightStyleCache[text];
 	}
-});
+).addTo(map);
 
-
-var highlight;
-function displayFeatureInfo(pixel) {
-
-    var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
-        return feature;
-    });
-
-    if (feature !== highlight) {
-        if (highlight) {
-            featureOverlay.removeFeature(highlight);
-        }
-        if (feature) {
-            featureOverlay.addFeature(feature);
-        }
-        highlight = feature;
-    }
-
-};
-
-// Display airport popup
-function onClickAirport(evt) {
-	var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
-		return feature;
-	});
-	
-	// If an airport is selected
-	if(feature != null){
-		audio.atc.name = feature.j.fName;
-		
-		// Refresh front page values
-		//setFrontPageValues();
-		
-		popupOverlay.setPosition(feature.j.geometry.k);
-		
-		var text = "";	// Popup text
-		if( Object.prototype.toString.call( feature.j.stream ) === '[object Array]'){
-			text+="<ul>";
-			for(i=0; i<feature.j.stream.length; i++)
-				text += "<li class='popupChoice' url='"+ feature.j.stream[i].URLName +"'>" + feature.j.stream[i].Description + "</li>";
-			text+="</ul>";
+function createAirportPopup(feature, layer){
+	if (feature.properties && feature.properties.fName) {
+		let text = ""
+		if( Object.prototype.toString.call( feature.properties.stream ) === '[object Array]'){
+			text += "<ul>"
+			for(i=0; i<feature.properties.stream.length; i++) {
+				let stream = feature.properties.stream[i]
+				text += "<li class='popupChoice' name='"+ feature.properties.fName +"' url='"+ stream.URLName +"'>" + stream.Description + "</li>"
+			}
+			text += "</ul>"
 		}
 		else{
-			text = "<span class='popupChoice' url='"+ feature.j.stream.URLName +"'>" + feature.j.stream.Description + "</span>";
+			text = "<span class='popupChoice' name='"+ feature.properties.fName +"' url='"+ feature.properties.stream.URLName +"'>" + feature.properties.stream.Description + "</span>";
 		}
-		
-		$("#popupContent").html( text );
-		$("#popup").show();
-	}
-	else
-		$("#popup").hide();
-};
+		layer.bindPopup(text);
+    }
+}
 
 //	Generate GeoJson data from basic json
 function generateGeoJson(url){
@@ -180,7 +59,7 @@ function generateGeoJson(url){
 		async: false
 	});
 
-	return JSON.stringify(returnVal);
+	return returnVal;
 }
 
 //	Create airport feature for map display
@@ -189,7 +68,7 @@ function createAirportFeature(airport){
 	feature.type = "Feature";
 	feature.geometry = new Object();
 	feature.geometry.type = "Point";
-	feature.geometry.coordinates =  ol.proj.transform([parseFloat(airport.Longitude), parseFloat(airport.Latitude)], 'EPSG:4326', 'EPSG:3857');
+	feature.geometry.coordinates =  [parseFloat(airport.Longitude), parseFloat(airport.Latitude)];
 	feature.properties = new Object();
 	feature.properties.name = airport.ICAO;
 	feature.properties.fName = airport.FriendlyName;
@@ -199,30 +78,21 @@ function createAirportFeature(airport){
 	return feature;
 }
 
-// Handle map over event
-$(map.getViewport()).on('mousemove', function(evt) {
-    var pixel = map.getEventPixel(evt.originalEvent);
-    displayFeatureInfo(pixel);
-});
-
-// Handle map click event
-map.on('click', function(evt) {
-	onClickAirport(evt);
-});
 
 // Handle popup airport selection click
-$("#popup").on('click', '.popupChoice', function(){
-	$("#atc_src").attr("src", "http://d.liveatc.net/"+$(this).attr("url")); 
+$("#map").on('click', '.popupChoice', function(){
+	$("#atc_src").attr("src", "http://d.liveatc.net/"+$(this).attr("url"));
 	$("#atc-audio")[0].load();
-	
+
 	audio.atc.streamName = $(this).text();
+	audio.atc.name = $(this).attr("name");
 
 	setFrontPageValues();
 	$("#popup").hide();
-	
-	$.cookie('atcName', audio.atc.name, { expires: 7 });
-	$.cookie('atcSName', audio.atc.streamName, { expires: 7 });
-	$.cookie('stream', "http://d.liveatc.net/"+$(this).attr("url"), { expires: 7 });
-	
+
+	Cookies.set('atcName', audio.atc.name, { expires: 7 });
+	Cookies.set('atcSName', audio.atc.streamName, { expires: 7 });
+	Cookies.set('stream', "http://d.liveatc.net/"+$(this).attr("url"), { expires: 7 });
+
 	slideRight();
 });
